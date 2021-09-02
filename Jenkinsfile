@@ -8,12 +8,7 @@ def date = new Date()
 def timestamp = dateFormat.format(date)
 
 pipeline {
-  agent { label 'slave-linux' }
-
-// ansi color
-  options {
-    ansiColor('xterm')
-  }
+  agent { label 'master' }
 
 // variable set
   environment {
