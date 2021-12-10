@@ -21,7 +21,10 @@ pipeline {
 // Build artifact
     stage('Build artifact') {
       when {
-        not { tag '*' }
+        allOf {
+          not { tag '*' }
+          branch 'main'
+        }
       }
       steps {
         script {
