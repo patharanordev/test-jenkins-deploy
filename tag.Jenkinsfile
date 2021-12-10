@@ -20,7 +20,11 @@ pipeline {
 
 // Validate checkout
     stage('Validate checkout') {
-      sh(returnStdout: true, script: "git tag --contains").trim()
+      steps {
+        script {
+          sh(returnStdout: true, script: "git tag --contains").trim()
+        }
+      }
     }
 
 // Build artifact
