@@ -18,27 +18,33 @@ pipeline {
 
   stages {
 
-// Do something
-    stage('do something') {
+// Build artifact
+    stage('Build artifact') {
+      when {
+        not { tag '*' }
+      }
       steps {
         script {
+          // For variable name "BRANCH_NAME" and "TAG_NAME",
+          // it requires to run "sh(returnStdout: true, script: "git tag --contains").trim()" first.
           sh(returnStdout: true, script: "git tag --contains").trim()
           sh"""
-          echo "do something"
+          echo "Built branch : $BRANCH_NAME"
+          echo "Built tag : $TAG_NAME"
+          echo "Built artifact."
           """
         }
       }
     }
 
 // waiting for tag
-    stage('build by tag') {
+    stage('Build by tag') {
       when {
         tag 'v*'
       }
       steps {
         sh"""
-        echo "Building $BRANCH_NAME"
-        echo "Building $TAG_NAME"
+        echo "Using artifact..."
         """
       }
     }
