@@ -8,7 +8,7 @@ def date = new Date()
 def timestamp = dateFormat.format(date)
 
 pipeline {
-  agent { label 'master' }
+  agent any
 
 // variable set
   environment {
