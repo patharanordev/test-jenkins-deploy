@@ -24,14 +24,19 @@ pipeline {
         sh"""
         echo "do something"
         """
+        sh(returnStdout: true, script: "git tag --contains").trim()
       }
     }
 
 // waiting for tag
     stage('build by tag') {
+      when {
+        tag 'v*'
+      }
       steps {
         sh"""
-        echo "build by ${current_tag}"
+        echo "Building $BRANCH_NAME"
+        echo "Building $TAG_NAME"
         """
       }
     }
