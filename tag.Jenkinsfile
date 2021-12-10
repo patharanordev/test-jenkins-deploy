@@ -21,10 +21,12 @@ pipeline {
 // Do something
     stage('do something') {
       steps {
-        sh"""
-        echo "do something"
-        """
-        sh(returnStdout: true, script: "git tag --contains").trim()
+        script {
+          sh(returnStdout: true, script: "git tag --contains").trim()
+          sh"""
+          echo "do something"
+          """
+        }
       }
     }
 
