@@ -30,7 +30,7 @@ pipeline {
 // waiting for tag
     stage('build by tag') {
       when {
-        branch 'main'
+        tag 'v*'
       }
       steps {
         sh"""
