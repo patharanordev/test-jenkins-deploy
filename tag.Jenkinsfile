@@ -29,10 +29,7 @@ pipeline {
 
 // waiting for tag
     stage('build by tag') {
-      when { 
-        branch: 'master',
-        tag:'v*'
-      }
+      when { allOf { branch 'master'; tag 'v*' } }
       steps {
         sh"""
         echo "build by tag"
