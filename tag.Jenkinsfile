@@ -47,7 +47,7 @@ pipeline {
       }
     }
 
-// waiting for tag
+// Executed when click build on specific tag
     stage('Build by tag') {
       when {
         tag 'v*'
