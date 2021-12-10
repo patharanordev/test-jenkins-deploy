@@ -18,6 +18,11 @@ pipeline {
 
   stages {
 
+// Validate checkout
+    stage('Validate checkout') {
+      sh(returnStdout: true, script: "git tag --contains").trim()
+    }
+
 // Build artifact
     stage('Build artifact') {
       when {
@@ -30,7 +35,6 @@ pipeline {
         script {
           // For variable name "BRANCH_NAME" and "TAG_NAME",
           // it requires to run "sh(returnStdout: true, script: "git tag --contains").trim()" first.
-          sh(returnStdout: true, script: "git tag --contains").trim()
           sh"""
           echo "Built branch : $BRANCH_NAME"
           echo "Built tag : $TAG_NAME"
