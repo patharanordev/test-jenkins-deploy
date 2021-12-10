@@ -41,7 +41,6 @@ pipeline {
           // it requires to run "sh(returnStdout: true, script: "git tag --contains").trim()" first.
           sh"""
           echo "Built branch : $BRANCH_NAME"
-          echo "Built tag : $TAG_NAME"
           echo "Built artifact."
           """
         }
@@ -55,6 +54,8 @@ pipeline {
       }
       steps {
         sh"""
+        echo "Built branch : $BRANCH_NAME"
+        echo "Built tag : $TAG_NAME"
         echo "Using artifact..."
         """
       }
